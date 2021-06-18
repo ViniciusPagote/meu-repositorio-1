@@ -7,9 +7,12 @@ import myapp.pedidos.Pedido;
 
 public class PrinterApp {
 	public static void imprimirPedido(Pedido pedido) {
+		//GERAR O CUPOM
+		//CRIAR O OBJETO - ENDERECO - LOGRADOURO, NUMERO, BAIRRO, CIDADE - SIGLA ESTADO
+		//FORMATAR O CNPJ, IE, EM - PLUS
+		
 		System.out.printf("Mr.%2$s,%1$s\n\n", "GLEYSON", "SAMPAIO");
 		
-		//ENDERECO - LOGRADOURO, NUMERO, BAIRRO, CIDADE - SIGLA ESTADO
 		Empresa empresa = pedido.getEmpresa();
 		
 		StringBuilder sb = new StringBuilder();
