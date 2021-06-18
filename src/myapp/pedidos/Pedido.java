@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import myapp.cadastros.Cadastro;
+import myapp.cadastros.Empresa;
 
 public class Pedido {
 	private Integer id;
@@ -12,6 +13,13 @@ public class Pedido {
 	private Cadastro comprador;
 	private Integer ccf;
 	private Integer coo;
+	private Empresa empresa;
+	public Empresa getEmpresa() {
+		return empresa;
+	}
+	public void setEmpresa(Empresa empresa) {
+		this.empresa = empresa;
+	}
 	
 	public Integer getCcf() {
 		return ccf;

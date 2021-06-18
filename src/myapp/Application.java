@@ -6,6 +6,7 @@ import java.util.List;
 
 import myapp.cadastros.CD;
 import myapp.cadastros.Cadastro;
+import myapp.cadastros.Empresa;
 import myapp.factory.FabricaCadastro;
 import myapp.pedidos.Pedido;
 import myapp.pedidos.PedidoItem;
@@ -36,7 +37,18 @@ public class Application {
 		p2.setFaixa(8);
 		p2.setArtista(artista);
 		
+		
+		Empresa empresa = new Empresa(908098l, 908908l);
+		Cadastro cadEmpresa = new Cadastro();
+		cadEmpresa.setCpfCnpj("12345678900001");
+		cadEmpresa.setEmail("pedidos@.pedidos.com");
+		cadEmpresa.setEndereco("Rua inacio de nobrega,  1036, centro - SP");
+		cadEmpresa.setNome("IFOOD PEDIDOS");
+		cadEmpresa.setTelefone(11987654321L);
+		empresa.setCadastro(cadEmpresa);
+		
 		Pedido pedido = new Pedido();
+		pedido.setEmpresa(empresa);
 		Cadastro comprador = FabricaCadastro.criarCadastro("GLEYSON", "b@b", 89678789L);
 		
 		pedido.setComprador(comprador);
@@ -63,11 +75,7 @@ public class Application {
 		
 		pedido.setItens(itens);
 		
-		System.out.println("Pedido Cliente " + pedido.getComprador().getNome());
-		for(PedidoItem i: pedido.getItens()) {
-			System.out.println(i.getProduto().getTitulo() + " " + i.getValorVenda() + " " + i.getValorTotal());
-		}
-
-	}
+		PrinterApp.imprimirPedido(pedido);
 	
+	}
 }
