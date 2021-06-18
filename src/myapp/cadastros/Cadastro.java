@@ -6,6 +6,20 @@ public class Cadastro {
 	private String nome;
 	private Long telefone;
 	private String email;
+	private String endereco;
+	private String cpfCnpj;
+	public String getCpfCnpj() {
+		return cpfCnpj;
+	}
+	public void setCpfCnpj(String cpfCnpj) {
+		this.cpfCnpj = cpfCnpj;
+	}
+	public String getEndereco() {
+		return endereco;
+	}
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
+	}
 	public void setTelefone(Long telefone) {
 		this.telefone = telefone;
 	}
