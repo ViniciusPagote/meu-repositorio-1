@@ -18,7 +18,7 @@ public class FormatUtil {
 			return "CPF-MAL-FORMATADO";
 		}
 		
-		if(cpfCnpj.length()==11) {
+		if(cpfCnpj.length()==ValidatorUtil.MAX_CPF) { // magic number
 			return formatCpf(cpfCnpj);
 		}
 		else

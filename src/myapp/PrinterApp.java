@@ -1,10 +1,12 @@
 package myapp;
 
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 import myapp.cadastros.Empresa;
 import myapp.cadastros.Endereco;
 import myapp.pedidos.Pedido;
+import myapp.pedidos.PedidoItem;
 import myapp.util.FormatUtil;
 
 public class PrinterApp {
@@ -58,7 +60,22 @@ public class PrinterApp {
 		
 		
 		sb.append("\n----------------------------------------------------------------\n");
-		sb.append(String.format("TOTAL %.2f", pedido.getValorTotal()));
+		
+		List<PedidoItem> itens = pedido.getItens();
+		
+		sb.append(String.format("%-35s%10s%10s%10s\n", "ITEM","QUANT", "R$ UNIT", "R$ TOTAL"));
+		
+		for(PedidoItem i: itens) {
+			String q = String.format("%.2f",i.getQuantidade());
+			String vu = String.format("%.2f",i.getValorVenda());
+			String vt = String.format("%.2f",i.getValorTotal());
+			
+			sb.append(String.format("%-35s%10s%10s%10s\n",i.getProduto().getTitulo(),  q,vu,vt));
+			
+		}
+		sb.append("\n----------------------------------------------------------------\n");
+		
+		sb.append(String.format("TOTAL %.2f\n", pedido.getValorTotal()));
 		
 		System.out.println(sb.toString());
 		//depois de tudo bonitinho	

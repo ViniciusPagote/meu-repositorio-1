@@ -1,6 +1,7 @@
 package myapp.util;
 
 public class ValidatorUtil {
+	public static final int MAX_CPF=11;
 	public static boolean isCnpj(String cnpj) {
 		return cnpj.matches("\\d{14}");
 	}
