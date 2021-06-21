@@ -5,7 +5,7 @@ public class Empresa {
 	private Long im;
 	private Long ie;
 	
-	public Empresa(Long im, Long ie ) {
+	public Empresa(Long ie,Long im ) {
 		this.im = im;
 		this.ie = ie;
 	}

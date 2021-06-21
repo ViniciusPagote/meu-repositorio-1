@@ -1,12 +1,11 @@
 package myapp;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 
 import myapp.cadastros.Empresa;
+import myapp.cadastros.Endereco;
 import myapp.pedidos.Pedido;
+import myapp.util.FormatUtil;
 
 public class PrinterApp {
 	public static void imprimirPedido(Pedido pedido) {
@@ -19,52 +18,53 @@ public class PrinterApp {
 		//regex
 		//pattern
 		//matches
-		String celFormatado = new Long(11987652345L).toString().replaceAll("(\\d{2})(\\d{5})(\\d{4})", "($1)$2-$3");
+		//String celFormatado = new Long(11987652345L).toString().replaceAll("(\\d{2})(\\d{5})(\\d{4})", "($1)$2-$3");
 		
 		
-		System.out.printf("Mr.%2$s,%1$s\n\n", "GLEYSON", "SAMPAIO");
+		///System.out.printf("Mr.%2$s,%1$s\n\n", "GLEYSON", "SAMPAIO");
+		
+		String myCep = "65450897";
+		String b1 = myCep.substring(0,2);
+		String b2= myCep.substring(2,5);
+		String b3= myCep.substring(5,8);
+		
+		//System.out.println(b1 + "." + b2 + "-" + b3);
+		//System.out.println(String.format("%s.%s-%s", b1,b2,b3));
+		
+		
+		//System.out.println(myCep.replaceAll( ("(\\d{2})(\\d{3})(\\d{3})"), "$1.$2-$3") );
+		
 		
 		Empresa empresa = pedido.getEmpresa();
 		
+		System.out.println(empresa.getCadastro().getEndereco());
+		
+		Endereco e = empresa.getCadastro().getEndereco();
+		String cep = e.getCep().toString().replaceAll( ("(\\d{2})(\\d{3})(\\d{3})"), "$1.$2-$3");
+		
 		StringBuilder sb = new StringBuilder();
+		sb.append("----------------------------------------------------------------\n");
 		sb.append(empresa.getCadastro().getNome() + "\n");
-		sb.append(empresa.getCadastro().getEndereco() + "\n");
-		sb.append(String.format("CNPJ: %s \n", empresa.getCadastro().getCpfCnpj()));
-		sb.append(String.format("IE: %d\nIM: %d\n",empresa.getIe(), empresa.getIm()));
-		sb.append("------------------------------------------------------------------\n");
+		sb.append(String.format("%s, %s, %s - %s - %s Cep: %s \n", e.getLogradouro(), e.getNumero(),e.getBairro(), e.getCidade(),e.getUf(), cep   ));
+		sb.append(String.format("CNPJ: %s \n", FormatUtil.formatCnpj(empresa.getCadastro().getCpfCnpj())));
+		sb.append(String.format("IE: %s\nIM: %s\n",empresa.getIe().toString().replaceAll( ("(\\d{3})(\\d{3})(\\d{3})"), "$1.$2.$3"), 
+				empresa.getIm().toString().replaceAll( ("(\\d{2})(\\d{3})(\\d{3})"), "$1.$2.$3")));
+		sb.append("----------------------------------------------------------------\n");
 		
 		//NUMA LINHA DATA FORMATADA - CCF (6) DIGITOS - COO (6DIGITOS)
 		SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss"); 
 		String dataFormatada = formatador.format(pedido.getData());
-		sb.append(dataFormatada);
+		sb.append(String.format("%-40s CCF:%06d CCO:%06d",dataFormatada, pedido.getCcf(), pedido.getCoo()) );
 		
-		sb.append("------------------------------------------------------------------\n");
+		
+		sb.append("\n----------------------------------------------------------------\n");
 		sb.append(String.format("TOTAL %.2f", pedido.getValorTotal()));
 		
 		System.out.println(sb.toString());
-		
-		//depois de tudo bonitinho
-		
+		//depois de tudo bonitinho	
 		//vamos salvar o cupum no disco
-		
-		
-		try {
-			  File dir = new File("/mjv/cupom");
-			  
-			  if(!dir.exists())
-				  dir.mkdir();
-		      
-			  File file = new File(dir, "cupom.txt" );
-			  
-			  FileWriter myWriter = new FileWriter(file);
-		      //myWriter.write("Files in Java might be tricky, but it is fun enough!");
-		      myWriter.write(sb.toString());
-		      myWriter.close();
-		      System.out.println("Successfully wrote to the file.");
-		    } catch (IOException e) {
-		      System.out.println("An error occurred.");
-		      e.printStackTrace();
-		    }
-		  }
-		
+	}	
 }
+
+//Path path = Paths.get(newFile);
+//Files.write(path, bytes);
