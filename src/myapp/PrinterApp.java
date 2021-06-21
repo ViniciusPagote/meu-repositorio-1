@@ -1,5 +1,8 @@
 package myapp;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 
 import myapp.cadastros.Empresa;
@@ -10,6 +13,14 @@ public class PrinterApp {
 		//GERAR O CUPOM
 		//CRIAR O OBJETO - ENDERECO - LOGRADOURO, NUMERO, BAIRRO, CIDADE - SIGLA ESTADO
 		//FORMATAR O CNPJ, IE, EM - PLUS
+		
+		//substring
+		//split
+		//regex
+		//pattern
+		//matches
+		String celFormatado = new Long(11987652345L).toString().replaceAll("(\\d{2})(\\d{5})(\\d{4})", "($1)$2-$3");
+		
 		
 		System.out.printf("Mr.%2$s,%1$s\n\n", "GLEYSON", "SAMPAIO");
 		
@@ -30,17 +41,30 @@ public class PrinterApp {
 		sb.append("------------------------------------------------------------------\n");
 		sb.append(String.format("TOTAL %.2f", pedido.getValorTotal()));
 		
-		
-		
-		
 		System.out.println(sb.toString());
-		/*
-		System.out.println(empresa.getCadastro().getNome());
-		System.out.println(empresa.getCadastro().getEndereco());
-		System.out.println("CNPJ:" + empresa.getCadastro().getCpfCnpj());
-		System.out.println("IE:" +empresa.getIe());
-		System.out.println("IM:" +empresa.getIm());
-		*/
 		
-	}
+		//depois de tudo bonitinho
+		
+		//vamos salvar o cupum no disco
+		
+		
+		try {
+			  File dir = new File("/mjv/cupom");
+			  
+			  if(!dir.exists())
+				  dir.mkdir();
+		      
+			  File file = new File(dir, "cupom.txt" );
+			  
+			  FileWriter myWriter = new FileWriter(file);
+		      //myWriter.write("Files in Java might be tricky, but it is fun enough!");
+		      myWriter.write(sb.toString());
+		      myWriter.close();
+		      System.out.println("Successfully wrote to the file.");
+		    } catch (IOException e) {
+		      System.out.println("An error occurred.");
+		      e.printStackTrace();
+		    }
+		  }
+		
 }
