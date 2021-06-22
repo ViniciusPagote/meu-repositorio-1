@@ -14,6 +14,7 @@ import myapp.cadastros.Endereco;
 import myapp.factory.FabricaCadastro;
 import myapp.pedidos.Pedido;
 import myapp.pedidos.PedidoItem;
+import myapp.service.CupomService;
 
 public class Application {
 	public static void main(String[] args) {
@@ -89,17 +90,15 @@ public class Application {
 		
 		pedido.setItens(itens);
 		
-		 String conteudo = PrinterApp.gerarCupom(pedido);
+		String conteudo = CupomService.gerarCupom(pedido);
 		 
-		 File dir = new File("C:\\mjv\\meu-repositorio\\cupom");
-		 if(!dir.exists())
-			 dir.mkdirs();
-		 
-		 File cupom = new File(dir,"cupom.txt");
-		 
-		 
-		 
-		 
+		File dir = new File("C:\\mjv\\meu-repositorio\\cupom");
+		try {
+			PrinterApp.print(conteudo, dir, "cupom.txt");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	
 	}
 }
