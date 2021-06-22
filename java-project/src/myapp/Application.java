@@ -15,6 +15,8 @@ import myapp.factory.FabricaCadastro;
 import myapp.pedidos.Pedido;
 import myapp.pedidos.PedidoItem;
 import myapp.service.CupomService;
+import myapp.util.PrinterApp;
+import myapp.util.ReaderApp;
 
 public class Application {
 	public static void main(String[] args) {
@@ -94,7 +96,8 @@ public class Application {
 		 
 		File dir = new File("C:\\mjv\\meu-repositorio\\cupom");
 		try {
-			PrinterApp.print(conteudo, dir, "cupom.txt");
+			//PrinterApp.print(conteudo, dir, "cupom.txt");
+			CupomService.gerarPedidos(dir, "pedidos.txt");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

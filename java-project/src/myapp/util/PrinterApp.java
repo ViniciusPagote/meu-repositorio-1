@@ -1,4 +1,4 @@
-package myapp;
+package myapp.util;
 
 import java.io.File;
 import java.nio.file.Files;

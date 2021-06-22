@@ -1,6 +1,8 @@
 package myapp.service;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import myapp.cadastros.Empresa;
@@ -8,8 +10,24 @@ import myapp.cadastros.Endereco;
 import myapp.pedidos.Pedido;
 import myapp.pedidos.PedidoItem;
 import myapp.util.FormatUtil;
+import myapp.util.ReaderApp;
 
 public class CupomService {
+	public static List<Pedido> gerarPedidos(File dir, String fileName) throws Exception {
+		SimpleDateFormat formatador = new SimpleDateFormat("yyyyMMdd"); 
+		List<String> linhas = ReaderApp.ler(dir, fileName);
+		
+		List<Pedido> pedidos = new ArrayList<Pedido>();
+		for(String l: linhas) {
+			Pedido p = new Pedido();
+			p.setData(formatador.parse(l.substring(0,8)));
+			p.setCcf(Integer.valueOf(l.substring(8,10)));
+			p.setCoo(Integer.valueOf(l.substring(10,13)));
+			
+			pedidos.add(p);
+		}
+		return pedidos;
+	}
 	public static String gerarCupom(Pedido pedido) {
 		
 		Empresa empresa = pedido.getEmpresa();
