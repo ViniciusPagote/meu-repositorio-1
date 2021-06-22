@@ -4,8 +4,8 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>estudo</groupId>
 	<artifactId>java-maven-hibernate</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>Projeto Java Maven</name>
+	<version>1.0</version>
+	<name>Projeto Java Maven e Hibernate</name>
 
 	<dependencies>
 		<!-- HIBERNATE -->
