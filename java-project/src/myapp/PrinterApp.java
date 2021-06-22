@@ -10,32 +10,7 @@ import myapp.pedidos.PedidoItem;
 import myapp.util.FormatUtil;
 
 public class PrinterApp {
-	public static void imprimirPedido(Pedido pedido) {
-		//GERAR O CUPOM
-		//CRIAR O OBJETO - ENDERECO - LOGRADOURO, NUMERO, BAIRRO, CIDADE - SIGLA ESTADO
-		//FORMATAR O CNPJ, IE, EM - PLUS
-		
-		//substring
-		//split
-		//regex
-		//pattern
-		//matches
-		//String celFormatado = new Long(11987652345L).toString().replaceAll("(\\d{2})(\\d{5})(\\d{4})", "($1)$2-$3");
-		
-		
-		///System.out.printf("Mr.%2$s,%1$s\n\n", "GLEYSON", "SAMPAIO");
-		
-		String myCep = "65450897";
-		String b1 = myCep.substring(0,2);
-		String b2= myCep.substring(2,5);
-		String b3= myCep.substring(5,8);
-		
-		//System.out.println(b1 + "." + b2 + "-" + b3);
-		//System.out.println(String.format("%s.%s-%s", b1,b2,b3));
-		
-		
-		//System.out.println(myCep.replaceAll( ("(\\d{2})(\\d{3})(\\d{3})"), "$1.$2-$3") );
-		
+	public static String gerarCupom(Pedido pedido) {
 		
 		Empresa empresa = pedido.getEmpresa();
 		
@@ -75,13 +50,41 @@ public class PrinterApp {
 		}
 		sb.append("\n----------------------------------------------------------------\n");
 		
-		sb.append(String.format("TOTAL %.2f\n", pedido.getValorTotal()));
+		sb.append(String.format("%-58s %.2f\n","TOTAL", pedido.getValorTotal()));
+		return sb.toString();
 		
-		System.out.println(sb.toString());
+		// System.out.println(sb.toString());
 		//depois de tudo bonitinho	
 		//vamos salvar o cupum no disco
 	}	
 }
+
+//GERAR O CUPOM
+//CRIAR O OBJETO - ENDERECO - LOGRADOURO, NUMERO, BAIRRO, CIDADE - SIGLA ESTADO
+//FORMATAR O CNPJ, IE, EM - PLUS
+
+//substring
+//split
+//regex
+//pattern
+//matches
+//String celFormatado = new Long(11987652345L).toString().replaceAll("(\\d{2})(\\d{5})(\\d{4})", "($1)$2-$3");
+
+
+///System.out.printf("Mr.%2$s,%1$s\n\n", "GLEYSON", "SAMPAIO");
+		
+
+//String myCep = "65450897";/
+//String b1 = myCep.substring(0,2);
+//String b2= myCep.substring(2,5);
+//String b3= myCep.substring(5,8);
+
+//System.out.println(b1 + "." + b2 + "-" + b3);
+//System.out.println(String.format("%s.%s-%s", b1,b2,b3));
+
+
+//System.out.println(myCep.replaceAll( ("(\\d{2})(\\d{3})(\\d{3})"), "$1.$2-$3") );
+
 
 //Path path = Paths.get(newFile);
 //Files.write(path, bytes);

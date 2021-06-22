@@ -1,5 +1,8 @@
 package myapp;
 
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -18,7 +21,6 @@ public class Application {
 		//1 CRIAR OBJETOS QUE RELACIONANDO-SE EU TEREI UMA PESRPECTIVA DE TER UM PEDIDO COM
 		//TODAS AS INFORMAÇÕES
 		//2 IMPRIMIR ESTE PEDIDO NO ESTILO CUPOM
-		
 		
 		Cadastro artista = FabricaCadastro.criarCadastro("BRUCE DICKSON", "a@a", 989089090L);
 			
@@ -87,7 +89,17 @@ public class Application {
 		
 		pedido.setItens(itens);
 		
-		PrinterApp.imprimirPedido(pedido);
+		 String conteudo = PrinterApp.gerarCupom(pedido);
+		 
+		 File dir = new File("C:\\mjv\\meu-repositorio\\cupom");
+		 if(!dir.exists())
+			 dir.mkdirs();
+		 
+		 File cupom = new File(dir,"cupom.txt");
+		 
+		 
+		 
+		 
 	
 	}
 }
