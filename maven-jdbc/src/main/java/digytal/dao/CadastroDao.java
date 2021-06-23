@@ -3,6 +3,7 @@ package digytal.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.List;
 
 import digytal.jdbc.connection.FabricaConexao;
 import digytal.model.Cadastro;
@@ -25,8 +26,17 @@ public class CadastroDao {
 			e.printStackTrace();
 		}
 	}
+	//IMPLEMENTAR
 	public void alterar() {
 		
 	}
-	
+	public void excluir() {
+		
+	}
+	public List<Cadastro> listar() {
+		return null;
+	}
+	public Cadastro buscar() {
+		return null;
+	}
 }
